@@ -113,8 +113,8 @@ function incomingFile(servedfileName, id, w) {
 
 memory = [];
 
-    // wss://don-m0rx.onrender.com//
-    let ws = new WebSocket('ws://localhost:2104/');
+    // 
+    let ws = new WebSocket('wss://don-m0rx.onrender.com/');
     
     ws.onopen = () => { 
         document.querySelector('.load_overlay').style.display = 'none';
