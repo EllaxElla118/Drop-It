@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href = "resources/fonts/stylesheet.css" rel = "stylesheet" type = "text/css" />
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+    <script src="resources/chunks.js"></script>
+    <link rel="icon" href="resources/imgs/icon.svg">
+    <title>Drop It - Web Version 1.0</title>
+</head>
+<body>
+
+    <div class="load_overlay">
+        <p id="cctxt">Connecting to Server... <p><img height="60px" width="60px" src="resources/imgs/loading.apng" /></p></p>
+    </div>
+
+    <div class='floatMenu'>
+        <p class="tooltip">
+            <img src="resources/imgs/webimg.svg" alt="web image" />
+            <span class="tooltip-text">Join a web</span>
+        </p>
+        <p class="tooltip">
+            <p><img src='resources/imgs/contact.svg' /></p>
+            <span class="tooltip-text">Contact Me</span>
+        </p>
+        <p class="tooltip">
+            <p><img src='resources/imgs/help.svg' /></p>
+            <span class="tooltip-text">Help</span>
+        </p>
+        <p class="tooltip">
+            <p><img src='resources/imgs/github.svg' /></p>
+            <span class="tooltip-text">Check out my github page</span>
+        </p>
+        <p class="tooltip">
+            <p><img src='resources/imgs/donate.svg' /></p>
+            <span class="tooltip-text">Donate</span>
+        </p>
+    </div>
+
+    <div class="top">
+        <p><img align='right' height="50px" width="211px" src="resources/imgs/logo.svg" /></p>
+        <p class="txt_1">Transfer files to any type of device</p>
+        <p class="txt_2"><i>(wheter they're on the same network or not)</i></p>
+    </div>
+
+    <div class='bottom'>
+        <input id='file' type="file">
+        <p><img id='addBtn' height="90px" width="90px" src="resources/imgs/add.svg" /></p>
+        <p class="txt_3">Your ID: <span id="id"></span></p>
+    </div>
+
+    <div id="overlay"></div>
+
+    <div id="id_div">
+        <p class="txt_4">Enter the ID of the device you wish to send this file to:</p>
+        <p class="a1"><input id="in_id" autofocus class="i1" type="text" maxlength="6" /><input onclick="send()" id='sendBtn' value="Send ->" type="button" /></p>
+    </div>
+    
+    <div>
+    </div>
+
+    <div id="icDiv" class="bottom_drawer">
+            <div class="header_bar">
+    <h2>Transfers</h2>
+    <button class="create">Toggle Drawer</button>
+  </div>
+  <div class="body_area">
+        <p class="txt_4">Inbound Transfers</p>
+  </div>
+</div>
+
+<!-- Template -->
+
+        <div class="icFile">
+            <p><img id="imgFileType" width="30px" height="40px" /></p>
+            <p><span id="FileName"></span></p>   
+            <div class="progressCont"><div class="progressInner"></div></div> 
+            <div id='h_002_e'>
+                <p id='fileProgress'></p>
+                <p id='speedTxt'>../.. B/s</p>   
+            </div>
+            <div id='h_001_d' style="display: none">
+                <div class='dBtn' id='sendBtn'><img style="width: inherit;height: inherit" src='resources/imgs/download.svg' /></div>
+                <div style="flex-shrink: 1;" id='deleteBtn'><img style="height: 35px" src='resources/imgs/delete.svg' /></div>
+                <div style="flex-shrink: 1;"><img style="height: 35px" src='resources/imgs/info.svg' /></div> 
+            </div>
+            <div style="background-color:white; display:none; position: fixed;"> 
+                <p>Sender Info: </p>
+                <p>File Name: </p>
+                <p>File Size: </p>
+            </div>
+        </div>
+
+<!-- End of Template -->
+
+</body>
+</html>
