@@ -1,1 +1,3 @@
-Drop It is a file transfer web app, although not official launched yet but still functional
+Drop It is a file transfer web app...
+
+It is hosted on vercel at dropit-two.vercel.app
