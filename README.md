@@ -1,3 +1,3 @@
 Drop It is a file transfer web app...
 
-Visit DropIt with this link: <a href='dropit-two.vercel.app'>Link</a>
+Visit DropIt with this link: <a href='https://dropit-two.vercel.app'>Link</a>
