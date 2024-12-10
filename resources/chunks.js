@@ -62,13 +62,13 @@ function reconstructFile(blob, callback) {
             // Extract metadata and file content
             try {
                 const [metadata, fileDataBuffer] = extractMessageBuffer(arrayBuffer);
-            
+
                     if(!chunkMemory[metadata.fileID]) {
                         chunkMemory[metadata.fileID] = [];
                     }
                     chunkMemory[metadata.fileID][metadata.sequencenumber] = fileDataBuffer;
                     callback(metadata);
-                
+
             } catch (error) {
                 console.error(error);
             }
@@ -121,7 +121,7 @@ async function createFile(z, v) {
                 delete buffer; // Cleanup Operation #1
             });
             delete chunkMemory[z]; // Cleanup Operation #2
-        
+
         // Create Blob and File objects
         const file = new File([concatenatedBuffer], v, { type: 'application/octet-stream' });
         delete concatenatedBuffer; // Cleanup Operation #3
