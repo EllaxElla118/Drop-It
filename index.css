@@ -1,5 +1,5 @@
 body {
-    font-family:  Mabry Pro, sans-serif;
+    font-family: Mabry Pro, sans-serif;
     padding: 10px;
     height: 100%;
 }
@@ -13,7 +13,7 @@ body {
     width: 100vw;
     justify-content: center;
     font-size: 17pt;
-    z-index: 10;
+    z-index: 6;
     background-color: white;
     position: fixed;
 }
@@ -45,22 +45,12 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.7); 
-    z-index: 1;
-}
-
-#id_div {
-    display: none;
-    grid-auto-flow: row;
-    position: absolute;
-    justify-content: center;
-    width: 100vw;
-    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 3;
 }
 
 .icFile {
     flex-shrink: 1;
-    border: 2px solid black;
     border-radius: 10px;
     width: 90%;
     display: none;
@@ -71,9 +61,12 @@ body {
     gap: 40px;
     margin-top: 10px;
     height: 4vw;
+    background-color: white;
+    box-shadow: 1px 1px 1px 1px black;
 }
 
 #sendBtn {
+    cursor: pointer;
     margin-left: auto;
     background-color: white;
     border: 2px solid green;
@@ -82,7 +75,7 @@ body {
     padding: 5px;
     font-size: 15pt;
     text-align: center;
-    font-family:  Mabry Pro, sans-serif;
+    font-family: Mabry Pro, sans-serif;
 }
 
 .txt_1 {
@@ -102,97 +95,84 @@ body {
     font-size: 15pt;
 }
 
-.txt_4 {
-    color: green;
-    font-size: 18pt;
-}
-
 .i1 {
     height: 40px;
     width: 90px;
     font-size: 15pt;
     text-align: center;
-    font-family:  Mabry Pro, sans-serif;
-}
-
-.a1 {
-    display: grid;
-    grid-auto-flow: column;
-    gap: 30px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    font-family: Mabry Pro, sans-serif;
 }
 
 /* <-- Gotten from Codepen: https://codepen.io/jradicus/pen/RJZedz --> */
 
 .bottom_drawer {
-  box-shadow: 5px 5px 5px green;
-  bottom: 0;
-  left: 50%;
-  position: absolute;
-  transform: translate(-50%, 0);
-  width: 70%;
+    box-shadow: 5px 5px 5px green;
+    bottom: 0;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, 0);
+    width: 70%;
 }
 
 .bottom_drawer .header_bar {
-  background: green;
-  border-radius: 4px 4px 0 0;
-  color: white;
-  padding: 10px 15px;
+    background: green;
+    border-radius: 4px 4px 0 0;
+    color: white;
+    padding: 10px 15px;
 }
 
 .bottom_drawer .header_bar:after {
-  display: table;
-  content: "";
-  clear: both;
+    display: table;
+    content: "";
+    clear: both;
 }
 
 .bottom_drawer .header_bar h2 {
-  float: left;
-  margin: 0;
-  padding: 0;
+    float: left;
+    margin: 0;
+    padding: 0;
 }
 
 .bottom_drawer .header_bar button {
-  background-color: white;
-  color: black;
-  font-family: Mabry Pro, sans-serif;
-  border: 2px solid white;
-  border-radius: 3px;
-  float: right;
+    background-color: white;
+    color: black;
+    font-family: Mabry Pro, sans-serif;
+    border: 2px solid white;
+    border-radius: 3px;
+    float: right;
 }
 
 .bottom_drawer .body_area {
     flex-direction: column;
-  height: 80vh;
-  background: #f2f2f2;
-  display: none;
-  overflow: hidden;
-  transition: all 1s ease;
-  align-content: center;
+    height: 80vh;
+    background: #f2f2f2;
+    display: none;
+    overflow: hidden;
+    transition: all 1s ease;
+    align-content: center;
+    overflow-y: auto;
 }
 
 .bottom_drawer .body_area .txt_4 {
-  margin: 0;
-  padding: 20px;
+    margin: 0;
+    padding: 20px;
 }
 
 .progressCont {
     display: flex;
     height: 40%;
-    background-color: rgb(192, 192, 192); 
-    width: 40%; 
-    border-radius: 5px; 
+    background-color: rgb(192, 192, 192);
+    width: 40%;
+    border-radius: 5px;
 }
 
 .progressInner {
-    background-color: rgb(116, 194, 92); 
-    color: white; 
-    padding: 1%; 
-    text-align: center; 
-    font-size: 20px; 
-    border-radius: 5px; 
+    background-color: rgb(116, 194, 92);
+    color: white;
+    padding: 1%;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 5px;
     flex-grow: 0.001;
     transition: flex-grow 0.2s ease;
 }
@@ -209,8 +189,9 @@ body {
 }
 
 .floatMenu {
-    margin-top: 10vh;
+    z-index: 3;
     background-color: white;
+    top: 15%;
     box-shadow: 1px 0 0 1px green;
     padding: 5px;
     display: flex;
@@ -223,37 +204,311 @@ body {
 }
 
 .floatMenu img {
-    max-width: 100%;      
-    max-height: 100%;      
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
 }
 
-/* ............................. */
-
+/***********************/
 .tooltip {
-  position: relative; /* Position context for the tooltip text */
-  display: inline-block; /* Ensures proper positioning with the image */
-  cursor: pointer; /* Optional: Pointer cursor for better UX */
+    position: relative;
+    /* Position context for the tooltip text */
+    display: inline-block;
+    /* Ensures proper positioning with the image */
+    cursor: pointer;
+    /* Optional: Pointer cursor for better UX */
 }
 
 .tooltip-text {
-    display: none;
-  width: 100px; /* Adjust width as needed */
-  background-color: #333; /* Tooltip background */
-  color: #fff; /* Tooltip text color */
-  text-align: center; /* Center the text */
-  padding: 5px; /* Space around the text */
-  border-radius: 5px; /* Rounded corners */
-  position: absolute; /* Position it relative to the parent */
-  left: 120%;
-  bottom: 25%;
-  z-index: 1; /* Ensure it stays on top */
-  opacity: 0; /* Fully transparent */
-  transition: opacity 0.3s; /* Smooth fade-in effect */
+    visibility: hidden;
+    /* Hide the tooltip by default */
+    width: 150px;
+    /* Adjust width as needed */
+    background-color: #333;
+    /* Tooltip background */
+    color: #fff;
+    /* Tooltip text color */
+    text-align: center;
+    /* Center the text */
+    padding: 5px;
+    /* Space around the text */
+    border-radius: 5px;
+    /* Rounded corners */
+    position: absolute;
+    /* Position it relative to the parent */
+    bottom: 10%;
+    /* Position above the element */
+    left: 120%;
+    /* Center align horizontally */
+    z-index: 1;
+    /* Ensure it stays on top */
+    opacity: 0;
+    /* Fully transparent */
+    transition: opacity 0.3s;
+    /* Smooth fade-in effect */
 }
 
 .tooltip:hover .tooltip-text {
-     display: inline-block 
+    visibility: visible;
+    /* Show the tooltip */
+    opacity: 1;
+    /* Fully opaque */
 }
 
-/*                   
+
+/***********************/
+
+.ird {
+    opacity: 0;
+    visibility: hidden;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    margin-left: -20vw;
+    margin-top: -20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    position: fixed;
+    border: 2px solid black;
+    border-radius: 5px;
+    height: 40vh;
+    width: 30vw;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    box-shadow: 1px 1px 1px black;
+    transition: opacity .5s;
+}
+
+/* Existing styles */
+.w1 {
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20%;
+}
+
+.w2 {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20%;
+    display: none;
+}
+
+.w3 {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20%;
+    display: none;
+}
+
+.w4 {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20%;
+    display: none;
+}
+
+.inner-div {
+    cursor: pointer;
+    border: 2px solid black;
+    width: 10vw;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.inner-div-text {
+    text-align: center;
+    font-size: 15px;
+}
+
+.mgnwebsBtn {
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid black;
+    padding: 5px;
+    font-size: 15px;
+    background-color: white;
+    color: black;
+}
+
+.mgnwebsBtn:hover {
+    background-color: black;
+    color: white;
+}
+
+
+#id_div {
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 45vw;
+    margin: 0 auto;
+    z-index: 4;
+    top: 20%;
+    left: 50%;
+    margin-left: -25vw;
+    gap: 5%;
+}
+
+.txt_4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.a1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.i1 {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    width: 150px;
+    box-sizing: border-box;
+}
+
+#sBtn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#sBtn:hover {
+    background-color: #45a049;
+}
+
+#id_div>div:nth-child(2) {
+    height: 100%;
+}
+
+.qrCont {
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 5px;
+    width: 10vw;
+    height: 10vw;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+}
+
+.qrImg {
+    height: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #id_div {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .a1 {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .i1 {
+        width: 100%;
+    }
+
+    #sBtn {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .qrImg {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+.cvi {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-shrink: 1;
+}
+
+.sNote {
+    color: green;
+    position: fixed;
+    padding: 10px;
+    top: 5%;
+    left: 5%;
+    width: fit-content;
+    height: 3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.qrScanner {
+  position: fixed;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 90%;
+  margin: auto;
+  padding: 10px;
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  z-index: 6;
+}
+
+/* Video Styling */
+#video {
+  width: 100%;
+  max-width: 400px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Canvas (Hidden, if used for processing) */
+#canvas {
+  display: none;
+}
+
+/* Result Text */
+#result {
+  margin-top: 15px;
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+  line-height: 1.5;
+}
