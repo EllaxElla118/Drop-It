@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href = "resources/fonts/stylesheet.css" rel = "stylesheet" type = "text/css" />
+    <link rel="stylesheet" href="index.css">
+    <script src="resources/qr.js"></script>
+    <script src="index.js"></script>
+    <script src="resources/zip.js"></script>
+    <script src="resources/chunks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+    <link rel="icon" href="resources/imgs/icon.svg">
+    <title>Drop It - Web Version 1.0</title>
+</head>
+<body>
+<div class="infoPanel"></div>
+
+<div class="qrScanner">
+  <video id="video" autoplay playsinline></video>
+  <canvas id="canvas"></canvas>
+  <p id="result">Point your camera at the QR code...</p>
+</div>
+
+<div id="id_div">
+    <div class="cvi">
+        <p class="txt_4">Enter the Receiver's ID</p>
+        <p class="a1">
+            <input id="in_id" autofocus class="i1" type="text" maxlength="6" />
+            <div style="text-align: center" onclick="send()" id='sBtn'>Send</div>
+        </p>
+    </div>
+    <!-- Vertical ruler -->
+    <div class="ruler"></div>
+    <div style="display:flex;flex-direction:column;text-align: center">
+        <p>Alternatively, Visit Drop-It on another device<br>and scan this QR-Code</p>
+        <div class="qrCont">
+            <img alt='Loading QR...' class="qrImg">
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="load_overlay">
+        <p id="cctxt">Connecting to Server... <p><img height="60px" width="60px" src="resources/imgs/loading.apng" /></p></p>
+    </div>
+    </div>
+    <div class='floatMenu'><!-- Will add this feature later
+        <p class="tooltip">
+            <img onclick="toggleWebCont()" src="resources/imgs/webimg.svg" alt="web image" />
+            <span class="tooltip-text">Join a web</span>
+        </p>
+        -->
+        <span class="tooltip">
+            <img onclick="initQRReader()" src="resources/imgs/qrscanner.svg" alt="Scanner image" />
+            <span class="tooltip-text">QR Scanner</span>
+        </span>
+        <span class="tooltip">
+            <a href='https://t.me/daniella45' target="blank"><img src="resources/imgs/contact.svg" alt="Telegram image" /></a>
+            <span class="tooltip-text">Contact the dev on Telegram</span>
+        </span>
+        <span class="tooltip">
+            <a href='help.htm' target="blank"><img src="resources/imgs/help.svg" alt="Help image" /></a>
+            <span class="tooltip-text">Help/Support</span>
+        </span>
+        <span class="tooltip">
+            <a href='https://github.com/EllaxElla118' target="blank"><img src="resources/imgs/github.svg" alt="Github image" /></a>
+            <span class="tooltip-text">Check out my other projects on Github</span>
+        </span>
+        <span class="tooltip">
+            <a href='https://www.buymeacoffee.com/supportella' target="blank"><img src="resources/imgs/donate.svg" alt="Donate image" /></a>
+            <span class="tooltip-text">Donate</span>
+        </span>
+    </div>
+
+<!-- Web feature, will be available in Future Release
+<div class="ird">
+    <div class="w1">
+        <div onclick="swapTo(2)">
+            <div class="inner-div"></div>
+            <div class="inner-div-text">Join a Web</div>
+        </div>
+        <div onclick="swapTo(3)">
+            <div class="inner-div">Div 2</div>
+            <div class="inner-div-text">Create a Web</div>
+        </div>
+    </div>
+
+    <div class="w2">
+        <p>Enter The Web's ID</p>
+        <input id='webID' />
+    </div>
+
+    <div class="w3">
+        Your Web ID: <i>Loading</i>
+    </div>
+
+    <div class="w4">
+        <img src="resources/imgs/spinner1.svg">
+    </div>
+
+    <div style="display:flex;flex-direction:row;gap:30px;">
+        <div onclick="swapTo(4)" class="mgnwebsBtn">Manage Webs -></div>
+        <div onclick="toggleWebCont()" class="mgnwebsBtn">Close</div>
+    </div>
+
+</div>
+ -->
+    <div class="top">
+        <p><img align='right' width="150px" src="resources/imgs/logo.svg" /></p>
+        <p class="txt_1">Transfer files to any type of device</p>
+        <p class="txt_2"><i>(whether they're on the same network or not)</i></p>
+    </div>
+
+    <div class='bottom'>
+        <input id='file' multiple type="file">
+        <p><img id='addBtn' height="80px" width="80px" src="resources/imgs/add.svg" /></p>
+        <p class="txt_3">Your ID: <span id="id"></span></p>
+    </div>
+
+    <div onclick="nfncts_close()" id="overlay"></div>
+
+<!-- Template -->
+
+<div class="recFiles">
+    <div class="recNum">
+        <p>Currently receiving <span id="recNum_i"></span> files</p>
+        <p><span id="recNum_j"></span> files ready for download</p>
+        <input disabled onclick="dall()" type="button" value="Zip and Download" class="recBtns dallBtn" />
+    </div>
+    <p id="FileName" style="color:green;font-size: 14pt;margin-bottom:-10px;"></p>
+    <p id="FileSize"></p>
+    <div class="recImgCont">
+        <img class="recImg" src="resources/imgs/loading.apng">
+    </div>        
+    <div class="recBtnsCont">
+        <input style="cursor:not-allowed;background-color:#9cd09c" disabled class="recBtns dBtn" value="Save" type="button" />
+        <input style="background-color:red" class="recBtns cancelBtn" value="Reject" type="button" />
+        <input style="display:none;background-color:red" class="recBtns deleteBtn" value="Delete" type="button" />
+        <p class="progress"></p>
+    </div>
+</div>
+
+<!-- End of Template -->
+
+</body>
+</html>
