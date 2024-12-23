@@ -274,8 +274,8 @@ function reconnect() {
                                 return t;
                             };
                         } else{v.querySelector('.recImg').src = 'resources/imgs/unsupportFileformat.jpg'}
-                        v.querySelector('.recImg').style.maxHeight = '100%';
-                        v.querySelector('.recImg').style.maxWidth = '100%';
+                        v.querySelector('.recImg').style.height = '100%';
+                        v.querySelector('.recImg').style.width = '100%';
                     };
                 });
         } else {  
