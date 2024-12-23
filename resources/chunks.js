@@ -139,7 +139,6 @@ async function createFile(z, v) {
     }
 }
 
-
 async function createFileUsingWorker(z, v) {
     chunkMemory[z].shift();
     const chunks = chunkMemory[z];
@@ -154,60 +153,3 @@ async function createFileUsingWorker(z, v) {
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
 }
-
-function deleteEntry(id) {
-    document.getElementById(id).remove();
-    memory_block_2 = [...memory_block_2.filter(n => {return n != id})];
-    // chunkMemory = [...chunkMemory.slice(0,id), [], ...chunkMemory.slice(id+1)];
-    chunkMemory[id] = [];
-}
-
-function updateRecUI() {
-    document.querySelectorAll('#recNum_i').forEach(l => {
-        let k = memory_block_2.length-memory_block_3.length === NaN ? '0': memory_block_2.length-memory_block_3.length;
-        l.innerHTML = `${k}&nbsp;`;
-    })
-    document.querySelectorAll('#recNum_j').forEach(l => {
-        l.innerHTML = `${memory_block_3.length}&nbsp;`;
-    })        
-    document.querySelectorAll('.dallBtn').forEach(l => {
-        l.value = `Save ${memory_block_3.length} files`;
-    })             
-    document.querySelectorAll('.dallBtn').forEach(l => {
-        l.disabled = !(memory_block_3.length>1);
-    })       
-}
-
-function draggable(element, constraint) {
-    let isDragging = false;
-    let offsetX = 0;
-    let offsetY = 0;
-
-    element.addEventListener("mousedown", (e) => {
-        isDragging = true;
-        const rect = element.getBoundingClientRect();
-        offsetX = e.clientX - (rect.left + rect.width / 2);
-        offsetY = e.clientY - (rect.top + rect.height / 2);
-        e.preventDefault();
-    });
-
-    document.addEventListener("mousemove", (e) => {
-        if (!isDragging) return;
-        if(constraint) {
-            if(constraint === 'leftright') {
-                element.style.left = `${e.clientX - offsetX}px`;
-            }
-            if(constraint === 'topdown') {
-                element.style.top = `${e.clientY - offsetY}px`;
-            }
-        } else {
-            element.style.left = `${e.clientX - offsetX}px`;
-            element.style.top = `${e.clientY - offsetY}px`;
-        }
-    });
-
-    document.addEventListener("mouseup", () => {
-        isDragging = false;
-    });
-}
-
