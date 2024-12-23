@@ -495,7 +495,6 @@ function draggable(element, parentLvl = 0) {
     let ancestor = element;
     i=0;
     function o(){while(i<parentLvl){ancestor=ancestor.parentElement;i++}}
-    console.log(ancestor);
     o();
 
     element.addEventListener("mousedown", (e) => {
