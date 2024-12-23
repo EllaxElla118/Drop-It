@@ -172,17 +172,16 @@ body {
     }
 }
 
+
 .recFiles {
     display: flex;
-    visibility: hidden;
-    opacity: 0;
     flex-direction: column;
     background-color: white;
     height: 70vh;
-    width: 60vh;
+    width: 30vw;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%) scale(0);
+    transform: translate(-50%,-50%);
     z-index: 4;
     position: fixed;
     border: 1.5px solid black;
@@ -191,76 +190,102 @@ body {
     padding: 10px;
     transition: transform .3s ease;
     cursor: grab;
+    opacity: 0;
+    visibility: hidden;
 }
 
+/* General Styles */
 .recFiles.active {
     opacity: 1;
     visibility: visible;
-    transform: translate(-50%,-50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
+    transition: all 0.3s ease-in-out;
+    overflow: hidden; /* Prevent overflow */
+    position: relative; /* Ensure relative positioning */
+    max-width: 100%; /* Limit container width */
 }
 
-.recFiles * {
-    object-fit: contain;
-}
-
+/* Container for Images */
 .recImgCont {
-    padding: 5px;
-    border: 2px solid green;
-    border-radius: 5px;
-    height: auto;
-    aspect-ratio: 8/7;
-    width: 50%;
+    height: 40vh;
+    padding: 8px;
+    border: 2px solid #32CD32;
+    border-radius: 8px;
+    width: 80%; /* Ensure it fits within the parent */
     display: flex;
-    align-content: center;
     justify-content: center;
+    align-items: center;
     align-self: center;
+    overflow: hidden; /* Prevent content from overflowing */
+    margin: 0 auto; /* Center container within parent */
 }
 
+/* Image Styling */
 .recImg {
-    top: 50%;
-    transform: translateY(-50%);
     position: relative;
-    max-height: 20%;
-    max-width: 20%;
-    object-fit: contain;
-    flex-shrink: 1;
+    align-self: center;
+    height: 30%;
+    width: 30%;
+    object-fit: contain; /* Ensure proper scaling */
+    flex-shrink: 0; /* Prevent shrinking */
 }
 
+/* Buttons Styling */
 .recBtns {
     margin-top: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: white;
+    padding: 12px 24px;
+    font-size: 14px;
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    font-family: Mabry Pro;
+    font-family: 'Mabry Pro', sans-serif;
     font-weight: bold;
-    box-shadow: 2px 2px 0 0 black;
+    box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+    max-width: 100%; /* Ensure button fits within parent */
 }
 
+.recBtns:hover {
+    transform: scale(1.05);
+}
+
+/* Buttons Container */
 .recBtnsCont {
     padding: 10px;
     display: flex;
     flex-direction: row-reverse;
-    gap: 10px;
+    gap: 5px;
+    flex-wrap: wrap; /* Allow buttons to wrap if container size is reduced */
 }
 
+/* Number Container */
 .recNum {
     background-color: #def3e8;
     width: 90%;
-    left: 50%;
-    margin-left: -45%;
+    margin: 0 auto;
     position: relative;
+    display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
-    display: flex;
-    padding: 7px;
+    border-radius: 8px;
+    padding: 10px;
     font-weight: bold;
-    gap: 10%;
+    gap: 8%; 
     flex-direction: row;
     text-align: center;
+    font-size: 14px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Prevent content overflow */
+}
+
+
+@media (max-aspect-ratio:1) {    
+    .recFiles {        
+        height: 60vh;
+        width: 70vw;
+    }
+    #i_ad {display: none;}
 }
 
 .floatMenu {
