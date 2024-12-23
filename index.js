@@ -222,8 +222,8 @@ memory = [];
 let memory_block_2 = [];
 let memory_block_3 = [];
 
-// wss://don-m0rx.onrender.com/ //
-let SERVER_URI = 'ws://127.0.0.1:2104';
+
+let SERVER_URI = 'wss://don-m0rx.onrender.com/';
 let reconnectTries = 0;
 let ws;
 
