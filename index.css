@@ -190,8 +190,6 @@ body {
     padding: 10px;
     transition: transform .3s ease;
     cursor: grab;
-    opacity: 0;
-    visibility: hidden;
 }
 
 /* General Styles */
