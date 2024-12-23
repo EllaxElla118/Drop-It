@@ -11,7 +11,7 @@ let pause_switch = {};
 
 document.addEventListener("DOMContentLoaded", function() {
     setInterval(updateRecUI,500);
-    draggable(document.querySelector('#id_div'));
+    draggable(document.querySelector('#id_div').querySelector('.dragico'), 2);
     /* Feature will be added in future release
   document.querySelector('#webID').addEventListener('input', function() {
       if(this.value.length === 6) {
@@ -214,7 +214,6 @@ function incomingFile(servedfileName, id, w, size, d) {
     }
     a.querySelector('#FileSize').textContent = r();
     document.body.appendChild(a);  
-    draggable(a);
     setTimeout(function(){a.classList.add('active')},500);
 }
 
@@ -223,7 +222,7 @@ let memory_block_2 = [];
 let memory_block_3 = [];
 
 // wss://don-m0rx.onrender.com/ //
-let SERVER_URI = 'ws://127.0.0.1:2104';
+let SERVER_URI = 'ws://192.168.56.1:2104/';
 let reconnectTries = 0;
 let ws;
 
@@ -461,6 +460,59 @@ function reqCancel(a,b) {
     let t = new ArrayBuffer(8);
     let z = mergeBuffers(metadataBuffer.buffer, t);
     ws.send(z);
+}
+
+
+
+function deleteEntry(id) {
+    document.getElementById(id).remove();
+    memory_block_2 = [...memory_block_2.filter(n => {return n != id})];
+    // chunkMemory = [...chunkMemory.slice(0,id), [], ...chunkMemory.slice(id+1)];
+    chunkMemory[id] = [];
+}
+
+function updateRecUI() {
+    document.querySelectorAll('#recNum_i').forEach(l => {
+        let k = memory_block_2.length-memory_block_3.length === NaN ? '0': memory_block_2.length-memory_block_3.length;
+        l.innerHTML = `${k}&nbsp;`;
+    })
+    document.querySelectorAll('#recNum_j').forEach(l => {
+        l.innerHTML = `${memory_block_3.length}&nbsp;`;
+    })        
+    document.querySelectorAll('.dallBtn').forEach(l => {
+        l.value = `Save ${memory_block_3.length} files`;
+    })             
+    document.querySelectorAll('.dallBtn').forEach(l => {
+        l.disabled = !(memory_block_3.length>1);
+    })       
+}
+
+function draggable(element, parentLvl = 0) {
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+    let ancestor = element;
+    i=0;
+    function o(){while(i<parentLvl){ancestor=ancestor.parentElement;i++}}
+    o();
+
+    element.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        const rect = ancestor.getBoundingClientRect();
+        offsetX = e.clientX - (rect.left + rect.width / 2);
+        offsetY = e.clientY - (rect.top + rect.height / 2);
+        e.preventDefault();
+    });
+
+    document.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+        ancestor.style.left = `${e.clientX - offsetX}px`;
+        ancestor.style.top = `${e.clientY - offsetY}px`;
+    });
+
+    document.addEventListener("mouseup", () => {
+        isDragging = false;
+    });
 }
 
 /* Feature will be added in future release 

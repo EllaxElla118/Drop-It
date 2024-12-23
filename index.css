@@ -178,10 +178,11 @@ body {
     flex-direction: column;
     background-color: white;
     height: 70vh;
-    width: 30vw;
+    width: fit-content;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    margin-top: -35vh;
+    transform: translateX(-50%) scale(0);
     z-index: 4;
     position: fixed;
     border: 1.5px solid black;
@@ -190,16 +191,17 @@ body {
     padding: 10px;
     transition: transform .3s ease;
     cursor: grab;
+    opacity: 0;
+    visibility: hidden;
 }
 
 /* General Styles */
 .recFiles.active {
     opacity: 1;
     visibility: visible;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translateX(-50%) scale(1);
     transition: all 0.3s ease-in-out;
-    overflow: hidden; /* Prevent overflow */
-    position: relative; /* Ensure relative positioning */
+    overflow: hidden;
     max-width: 100%; /* Limit container width */
 }
 
@@ -253,8 +255,8 @@ body {
     padding: 10px;
     display: flex;
     flex-direction: row-reverse;
-    gap: 5px;
-    flex-wrap: wrap; /* Allow buttons to wrap if container size is reduced */
+    gap: 3%;
+    flex-wrap: wrap;
 }
 
 /* Number Container */
@@ -282,6 +284,7 @@ body {
     .recFiles {        
         height: 60vh;
         width: 70vw;
+        margin-top: -30vh;
     }
     #i_ad {display: none;}
 }
