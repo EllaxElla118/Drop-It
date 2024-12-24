@@ -87,15 +87,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function qrReady(v) {
-  let c = JSON.parse(v);
+  let c = parseURL(v, 'qr');
   let d = document.querySelector('#id').innerText;
   let t = new ArrayBuffer(8);
   const message = {
     type: 'qr',
-    from: c.uuid,
+    from: c,
     to: d
   }
-  console.log(message);
   const msgJSON = JSON.stringify(message);
   const metadataBuffer = new TextEncoder().encode(msgJSON + "\0");
   let z = mergeBuffers(metadataBuffer.buffer, t);

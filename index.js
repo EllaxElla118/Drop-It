@@ -12,6 +12,11 @@ let pause_switch = {};
 document.addEventListener("DOMContentLoaded", function() {
     setInterval(updateRecUI,500);
     draggable(document.querySelector('#id_div').querySelector('.dragico'), 2);
+    let y = parseURL(window.location.href, 'qr');
+    if(y) {
+        sendInfo('mild', 'File will be received soon...', 5);
+        setTimeout(function(){qrReady(window.location.href)},5000);
+    };
     /* Feature will be added in future release
   document.querySelector('#webID').addEventListener('input', function() {
       if(this.value.length === 6) {
@@ -221,7 +226,8 @@ memory = [];
 let memory_block_2 = [];
 let memory_block_3 = [];
 
-let SERVER_URI = 'wss://don-m0rx.onrender.com/';
+// wss://don-m0rx.onrender.com/ //
+let SERVER_URI = 'ws://192.168.56.1:2104/';
 let reconnectTries = 0;
 let ws;
 
@@ -387,10 +393,7 @@ async function appendQR(id) {
         width: 200,
         height: 200,
         type: "svg",
-        data: `{
-            "ifo": "Visit DropIt and Scan this QR with the DropIt Scanner to receive the file(s)",
-            "uuid": ${id}
-        }`,
+        data: `https://dropit-gamma.vercel.app/?qr=${id}`,
         dotsOptions: {
             color: "green",
             type: "rounded"
@@ -512,6 +515,12 @@ function draggable(element, parentLvl = 0) {
     document.addEventListener("mouseup", () => {
         isDragging = false;
     });
+}
+
+function parseURL(a, b) {
+    const parsedUrl = new URL(a);
+    const qrValue = parsedUrl.searchParams.get(b);
+    return qrValue; 
 }
 
 /* Feature will be added in future release 
