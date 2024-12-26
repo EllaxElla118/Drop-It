@@ -10,7 +10,6 @@ let senderID = '';
 let pause_switch = {};
 
 document.addEventListener("DOMContentLoaded", function() {
-    setInterval(function(){if(ws&&ws.readyState===1){sendIPData()}},10000);
     setInterval(updateRecUI,500);
     draggable(document.querySelector('#id_div').querySelector('.dragico'), 2);
     let y = parseURL(window.location.href, 'qr');
@@ -163,9 +162,10 @@ async function send(r) {
                 pause_switch[fileID] = null;
             });
     };
-}
+};
 
 function idSelector() {
+    sendIPData();
     document.getElementById('id_div').classList.add('active');
     document.querySelector('.device-box').classList.add('active');
     document.getElementById('overlay').style.display = 'block';
@@ -246,6 +246,7 @@ function reconnect() {
     ws.onerror = () => {ws.close();sendInfo('mild', 'Reconecting...');reconnect()}
     ws.onclose = () => {ws.close();sendInfo('mild', 'Reconecting...');reconnect()}
     ws.onopen = () => {
+        sendIPData();
         document.querySelector('.load_overlay').style.display = 'none';   
         document.querySelector('#overlay').style.display = 'none';
         document.querySelector('.infoPanel').style.display = 'none';
@@ -315,6 +316,7 @@ function reconnect() {
                     `;
                     li.onclick = function() {
                         document.querySelector('#in_id').value = device.id;
+                        document.querySelector('#sBtn').click();
                     }
                     deviceList.appendChild(li);
                 });
