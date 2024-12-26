@@ -10,7 +10,7 @@ let senderID = '';
 let pause_switch = {};
 
 document.addEventListener("DOMContentLoaded", function() {
-    setInterval(function(){sendIPData()},10000);
+    setInterval(function(){if(ws&&ws.readyState===1){sendIPData()}},10000);
     setInterval(updateRecUI,500);
     draggable(document.querySelector('#id_div').querySelector('.dragico'), 2);
     let y = parseURL(window.location.href, 'qr');
@@ -100,7 +100,7 @@ function openFilePicker() {
 
 function nfncts_close() {
         document.getElementById('id_div').classList.remove('active');
-        document.querySelector('.device-box').style.display = 'none';
+        document.querySelector('.device-box').classList.remove('active');
         document.querySelector('.qrScanner').style.display = 'none';
         document.querySelector('#overlay').style.display = 'none';
 }
@@ -117,7 +117,7 @@ async function send(r) {
     document.querySelector('#sBtn').style.border = '2px solid green';
     setTimeout(function() {
         document.getElementById('id_div').classList.remove('active');
-        document.querySelector('.device-box').style.display = 'none';
+        document.querySelector('.device-box').classList.remove('active');
         document.querySelector('#overlay').style.display = 'none';
         document.querySelector('#sBtn').innerHTML = "Send";
         document.querySelector('#sBtn').disabled = 'false';
@@ -167,7 +167,7 @@ async function send(r) {
 
 function idSelector() {
     document.getElementById('id_div').classList.add('active');
-    document.querySelector('.device-box').style.display = 'block';
+    document.querySelector('.device-box').classList.add('active');
     document.getElementById('overlay').style.display = 'block';
 }
 
@@ -230,6 +230,7 @@ memory = [];
 let memory_block_2 = [];
 let memory_block_3 = [];
 
+// ws://127.0.0.1:2104/ //
 let SERVER_URI = 'wss://don-m0rx.onrender.com/';
 let reconnectTries = 0;
 let ws;

@@ -681,8 +681,12 @@ body {
     text-align: left;
 }
 
+.device-box.active {
+    display: block;
+}
+
 @media (max-width: 768px) {
-    .device-box {
+    .device-box.active {
         display: none;
     }
 }
