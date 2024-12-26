@@ -315,7 +315,6 @@ function reconnect() {
                     `;
                     li.onclick = function() {
                         document.querySelector('#in_id').value = device.id;
-                        document.querySelector('#sBtn').click();
                     }
                     deviceList.appendChild(li);
                 });
