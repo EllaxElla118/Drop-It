@@ -27,7 +27,7 @@ You can start transferring files instantly by visiting **Drop It** through the l
 
 If you find **Drop It** helpful, consider supporting the project to keep it running and help improve its features. We also need a domain name...
 
-[Buy me a coffee<img src="resources/imgs/buymeacoffee.png" alt="Buy Me A Coffee" width="200">](https://www.buymeacoffee.com/supportella)
+[<img src="resources/imgs/buymeacoffee.png" alt="Buy Me A Coffee" width="200">](https://www.buymeacoffee.com/supportella)
 
 ## License
 
