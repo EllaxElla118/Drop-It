@@ -10,6 +10,7 @@ let senderID = '';
 let pause_switch = {};
 
 document.addEventListener("DOMContentLoaded", function() {
+    setInterval(function(){sendIPData()},10000);
     setInterval(updateRecUI,500);
     draggable(document.querySelector('#id_div').querySelector('.dragico'), 2);
     let y = parseURL(window.location.href, 'qr');
@@ -99,6 +100,7 @@ function openFilePicker() {
 
 function nfncts_close() {
         document.getElementById('id_div').classList.remove('active');
+        document.querySelector('.device-box').style.display = 'none';
         document.querySelector('.qrScanner').style.display = 'none';
         document.querySelector('#overlay').style.display = 'none';
 }
@@ -115,6 +117,7 @@ async function send(r) {
     document.querySelector('#sBtn').style.border = '2px solid green';
     setTimeout(function() {
         document.getElementById('id_div').classList.remove('active');
+        document.querySelector('.device-box').style.display = 'none';
         document.querySelector('#overlay').style.display = 'none';
         document.querySelector('#sBtn').innerHTML = "Send";
         document.querySelector('#sBtn').disabled = 'false';
@@ -164,6 +167,7 @@ async function send(r) {
 
 function idSelector() {
     document.getElementById('id_div').classList.add('active');
+    document.querySelector('.device-box').style.display = 'block';
     document.getElementById('overlay').style.display = 'block';
 }
 
@@ -226,7 +230,8 @@ memory = [];
 let memory_block_2 = [];
 let memory_block_3 = [];
 
-let SERVER_URI = 'wss://don-m0rx.onrender.com/';
+// wss://don-m0rx.onrender.com/ //
+let SERVER_URI = 'ws://192.168.56.1:2104/';
 let reconnectTries = 0;
 let ws;
 
@@ -291,8 +296,32 @@ function reconnect() {
                 senderID = msg.message;                    
                 appendQR(msg.message);
              }
+            else if(msg.type === 'devices') {
+                const deviceList = document.querySelector('.device-list');
+                deviceList.innerHTML = ''; 
+                if(!msg.devices) {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <strong>Searching...</strong>
+                    `;
+                    deviceList.appendChild(li);
+                    return;
+                }
+                msg.devices.forEach(device => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <strong>${device.id}</strong>
+                        <span>${device.message.ip} (${device.message.browser}, ${device.message.os})</span>
+                    `;
+                    li.onclick = function() {
+                        document.querySelector('#in_id').value = device.id;
+                        document.querySelector('#sBtn').click();
+                    }
+                    deviceList.appendChild(li);
+                });
+            }
             else if(msg.type === 'client_list') {
-
+                
             }
             else if(msg.type === 'cancelFile') {
                 pause_switch[msg.fileID] = true;

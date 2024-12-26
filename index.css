@@ -662,3 +662,71 @@ body {
     height: 100vh;
     position: fixed;
 }
+
+/* Container for the box */
+.device-box {
+    display: none;
+    z-index: 4;
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    width: 20vw;
+    margin: 20px auto;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    text-align: left;
+}
+
+@media (max-width: 768px) {
+    .device-box {
+        display: none;
+    }
+}
+
+/* Title styling */
+.device-box h2 {
+    margin: 0 0 15px;
+    font-size: 12px;
+    color: #333;
+    text-align: center;
+}
+
+/* Device list styling */
+.device-list {
+    cursor: pointer;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Each device item */
+.device-list li {
+    padding: 10px;
+    border-bottom: 1px solid #eaeaea;
+    font-size: 12px;
+    color: #555;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Last item styling */
+.device-list li:last-child {
+    border-bottom: none;
+}
+
+/* Device type or info */
+.device-list li span {
+    font-size: 12px;
+    color: #888;
+}
+
+/* Highlight for active devices */
+.device-list li.active {
+    background-color: #e8f5e9;
+    font-weight: bold;
+    color: #2e7d32;
+}

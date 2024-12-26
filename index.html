@@ -13,12 +13,20 @@
     <script src="index.js"></script>
     <script src="resources/zip.js"></script>
     <script src="resources/chunks.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+    <script src="resources/network.js"></script>
+    <script src="resources/jsQR.js"></script>
     <link rel="icon" href="resources/imgs/icon.svg">
     <title>Drop It - Web Version 1.0</title>
 </head>
 <body>
 <div class="infoPanel"></div>
+
+<div class="device-box">
+        <h2>Devices on your network</h2>
+        <ul class="device-list">
+            <li><strong>Searching...</strong></li>
+        </ul>
+</div>
 
 <div class="qrScanner">
   <video id="video" autoplay playsinline></video>
